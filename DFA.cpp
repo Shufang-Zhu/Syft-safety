@@ -285,7 +285,11 @@ void DFA::construct_bdd(){
         }
     }
 }
+<<<<<<< HEAD
 //test git
+=======
+
+>>>>>>> 384ce1c039ef3cc4586804ee067598c3fb138c47
 void DFA::construct_bdd_new(){
     for(int i = 0; i < nbits+nvars; i++){
         BDD b = mgr->bddVar();
