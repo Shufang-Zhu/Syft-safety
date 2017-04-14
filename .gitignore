@@ -27,3 +27,19 @@
 *.exe
 *.out
 *.app
+<<<<<<< HEAD
+=======
+bdd
+ltlf2ws1s
+mona
+
+#temporary files
+*~
+
+#testing files
+*.dfa
+*.mona
+*.ltlf
+*.part
+*.ltl
+>>>>>>> first commit
