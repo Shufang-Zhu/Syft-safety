@@ -285,11 +285,6 @@ void DFA::construct_bdd(){
         }
     }
 }
-<<<<<<< HEAD
-//test git
-=======
-
->>>>>>> 384ce1c039ef3cc4586804ee067598c3fb138c47
 void DFA::construct_bdd_new(){
     for(int i = 0; i < nbits+nvars; i++){
         BDD b = mgr->bddVar();
@@ -328,9 +323,9 @@ void DFA::construct_bdd_new(){
             res[i] = res[i] + tmp;
             //dumpdot(res[i], "res "+to_string(i));
         }
-        dumpdot(res[i], "old_res "+to_string(i));
+        //dumpdot(res[i], "old_res "+to_string(i));
         res[i] = res[i].Compose(mgr->bddOne(), nbits+0);
-        dumpdot(res[i], "res "+to_string(i));
+        //dumpdot(res[i], "res "+to_string(i));
     }
 
 

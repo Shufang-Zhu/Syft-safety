@@ -5,6 +5,7 @@
 using namespace std;
 
 int main(int argc, char ** argv){
+
     string filename;
     string partfile;
     assert(argc == 3);

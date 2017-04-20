@@ -27,9 +27,11 @@ void syn::initializer(){
         tmp += ac;
     }
     W.push_back(!tmp);//modifty negation
-    //dumpdot(I, "W00");
+    dumpdot(W[0], "w0");
     Wprime.push_back(!tmp);//modify negation
     cur = 0;
+    dumpdot(bdd.res[0], "s0");
+    dumpdot(bdd.res[1], "s1");
 
 }
 
@@ -73,7 +75,6 @@ bool syn::fixpoint(){
 
 bool syn::realizablity(){
     while(true){
-
         BDD tmp = W[cur] * univsyn();//modify
         W.push_back(tmp);
         cur++;
@@ -82,8 +83,7 @@ bool syn::realizablity(){
         Wprime.push_back(existsyn());
         //assert(cur = (W.size() - 1));
     }
-    //dumpdot(I, "W00");
-    cout<<bdd.init<<endl;
+    //cout<<bdd.init<<endl;
     if((Wprime[cur-1].Eval(state2bit(bdd.init))).IsOne()){
         BDD O = mgr.bddOne();
         vector<BDD> S2O;
@@ -145,7 +145,7 @@ int* syn::state2bit(int n){
         res = "0";
     else
         reverse(res.begin(), res.end());
-    //cout<<res<<endl;
+
     int offset = bdd.nbits - res.length();
     for(int i = 0; i < offset; i++)
         s[i] = 0;
