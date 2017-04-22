@@ -11,15 +11,15 @@ LDIR=../cudd-3.0.0/lib
 LIBS=-lcudd
 
 
-bdd: $(SOURCES)
+SSyft: $(SOURCES)
 	$(GXX) $(SOURCES) $(GXXFLAGS) -L $(LDIR) $(LIBS)
-	$(GXX) -o bdd $(SOURCES) $(GXXFLAGS) -L $(LDIR) $(LIBS)
+	$(GXX) -o SSyft $(SOURCES) $(GXXFLAGS) -L $(LDIR) $(LIBS)
 
 
 
 
-.PHONY: bdd
+.PHONY: SSyft
 clean:
-	rm  bdd
+	rm  SSyft
 
 

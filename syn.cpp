@@ -26,12 +26,49 @@ void syn::initializer(){
         BDD ac = state2bdd(bdd.finalstates[i]);
         tmp += ac;
     }
+    tmp = greatest_acc(tmp);
     W.push_back(!tmp);//modifty negation
-    dumpdot(W[0], "w0");
+    //dumpdot(W[0], "w0");
     Wprime.push_back(!tmp);//modify negation
     cur = 0;
-    dumpdot(bdd.res[0], "s0");
-    dumpdot(bdd.res[1], "s1");
+    //dumpdot(bdd.res[0], "s0");
+    //dumpdot(bdd.res[1], "s1");
+
+}
+
+BDD syn::greatest_acc(BDD f){
+    vector<BDD> acc;
+    cur = 0;
+    acc.push_back(f);
+    BDD newf;
+    while(true){
+        newf = acc[cur] * elim_acc(acc[cur]);
+        if(newf == acc[cur])
+            break;
+        acc.push_back(newf);
+        cur++;
+    }
+    return newf;
+}
+
+BDD syn::elim_acc(BDD f){
+    BDD V = mgr.bddOne();
+    int index;
+    for(int i = 0; i < bdd.input.size(); i++){
+        index = bdd.input[i];
+        V *= bdd.bddvars[index];
+    }
+    for(int i = 0; i < bdd.output.size(); i++){
+        index = bdd.output[i];
+        V *= bdd.bddvars[index];
+    }
+    f = prime(f);
+    int offset = bdd.nbits + bdd.nvars;
+    for(int i = 0; i < bdd.nbits; i++){
+        f = f.Compose(bdd.res[i], offset+i);
+    }
+    BDD elimacc = f.UnivAbstract(V);
+    return elimacc;
 
 }
 
@@ -75,20 +112,28 @@ bool syn::fixpoint(){
 
 bool syn::realizablity(){
     while(true){
-        BDD tmp = W[cur] * univsyn();//modify
+        BDD I = mgr.bddOne();
+        int index;
+        for(int i = 0; i < bdd.input.size(); i++){
+            index = bdd.input[i];
+            I *= bdd.bddvars[index];
+        }
+        BDD tmp = W[cur] * univsyn(I);//modify
         W.push_back(tmp);
         cur++;
         if(fixpoint())
             break;
-        Wprime.push_back(existsyn());
-        //assert(cur = (W.size() - 1));
+        BDD O = mgr.bddOne();
+        for(int i = 0; i < bdd.output.size(); i++){
+            index = bdd.output[i];
+        O *= bdd.bddvars[index];
+        }
+        Wprime.push_back(existsyn(O));
     }
-    //cout<<bdd.init<<endl;
     if((Wprime[cur-1].Eval(state2bit(bdd.init))).IsOne()){
         BDD O = mgr.bddOne();
         vector<BDD> S2O;
         for(int i = 0; i < bdd.output.size(); i++){
-            //cout<<bdd.output[i]<<endl;
             O *= bdd.bddvars[bdd.output[i]];
         }
         //cout<<bdd.nbits<<endl;
@@ -108,6 +153,46 @@ bool syn::realizablity(){
 
 }
 
+
+bool syn::realizablity_variant(){
+    BDD transducer;
+    while(true){
+        int index;
+        BDD O = mgr.bddOne();
+        for(int i = 0; i < bdd.output.size(); i++){
+            index = bdd.output[i];
+            O *= bdd.bddvars[index];
+        }
+        
+        BDD tmp = W[cur] * existsyn_invariant(O, transducer);
+        W.push_back(tmp);
+        cur++;
+        if(fixpoint())
+            break;
+        BDD I = mgr.bddOne();
+        for(int i = 0; i < bdd.input.size(); i++){
+            index = bdd.input[i];
+            I *= bdd.bddvars[index];
+        }
+        Wprime.push_back(univsyn_invariant(I));
+        
+    }
+    if((Wprime[cur-1].Eval(state2bit(bdd.init))).IsOne()){
+        BDD O = mgr.bddOne();
+        vector<BDD> S2O;
+        for(int i = 0; i < bdd.output.size(); i++){
+            O *= bdd.bddvars[bdd.output[i]];
+        }
+        O *= bdd.bddvars[bdd.nbits];
+        //naive synthesis
+        transducer.SolveEqn(O, S2O, outindex(), bdd.output.size());
+        strategy(S2O);
+        
+        return true;
+    }
+    return false;
+
+}
 
 void syn::strategy(vector<BDD>& S2O){
     vector<BDD> winning;
@@ -156,15 +241,11 @@ int* syn::state2bit(int n){
 }
 
 
-BDD syn::univsyn(){
-    BDD I = mgr.bddOne();
+BDD syn::univsyn(BDD univ){
+    
     BDD tmp = Wprime[cur];
-    int index;
     int offset = bdd.nbits + bdd.nvars;
-    for(int i = 0; i < bdd.input.size(); i++){
-        index = bdd.input[i];
-        I *= bdd.bddvars[index];
-    }
+    
     //dumpdot(I, "W00");
     tmp = prime(tmp);
     for(int i = 0; i < bdd.nbits; i++){
@@ -173,8 +254,16 @@ BDD syn::univsyn(){
 
     //tmp *= !Wprime[cur];//modify delete this constraint
 
-    BDD eliminput = tmp.UnivAbstract(I);
+    BDD eliminput = tmp.UnivAbstract(univ);
     return eliminput;
+
+}
+
+BDD syn::univsyn_invariant(BDD univ){
+    
+    BDD tmp = W[cur];
+    BDD elimuniv = tmp.UnivAbstract(univ);
+    return elimuniv;
 
 }
 
@@ -187,16 +276,25 @@ BDD syn::prime(BDD orign){
     return tmp;
 }
 
-BDD syn::existsyn(){
-    BDD O = mgr.bddOne();
-    BDD tmp = W[cur];
-    int index;
+BDD syn::existsyn_invariant(BDD exist, BDD& transducer){
+    BDD tmp = Wprime[cur];
     int offset = bdd.nbits + bdd.nvars;
-    for(int i = 0; i < bdd.output.size(); i++){
-        index = bdd.output[i];
-        O *= bdd.bddvars[index];
+    
+    //dumpdot(I, "W00");
+    tmp = prime(tmp);
+    for(int i = 0; i < bdd.nbits; i++){
+        tmp = tmp.Compose(bdd.res[i], offset+i);
     }
-    BDD elimoutput = tmp.ExistAbstract(O);
+    transducer = tmp;    
+    BDD elimoutput = tmp.ExistAbstract(exist);
+    return elimoutput;
+
+}
+
+BDD syn::existsyn(BDD exist){
+    
+    BDD tmp = W[cur];
+    BDD elimoutput = tmp.ExistAbstract(exist);
     return elimoutput;
 
 }

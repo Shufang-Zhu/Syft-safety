@@ -10,6 +10,7 @@ class syn
     public:
         syn(string filename, string partfile);
         bool realizablity();
+        bool realizablity_variant();
         virtual ~syn();
     protected:
     private:
@@ -26,8 +27,12 @@ class syn
         int** outindex();
         void dumpdot(BDD &b, string filename);
         BDD prime(BDD orign);
-        BDD univsyn();
-        BDD existsyn();
+        BDD univsyn(BDD univ);
+        BDD univsyn_invariant(BDD univ);
+        BDD existsyn(BDD exist);
+        BDD existsyn_invariant(BDD exist, BDD& transducer);
+		BDD greatest_acc(BDD f);
+		BDD elim_acc(BDD f);
         void strategy(vector<BDD>& S2O);
 };
 
