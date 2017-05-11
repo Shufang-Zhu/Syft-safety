@@ -35,7 +35,10 @@
 bdd
 ltlf2ws1s
 mona
+<<<<<<< HEAD
 safe2fol
+=======
+>>>>>>> a8ba6083990210392a4f64304498d5ef4dc38ac8
 SSyft
 
 #temporary files
