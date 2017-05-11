@@ -128,7 +128,9 @@ bool syn::realizablity(){
             index = bdd.output[i];
         O *= bdd.bddvars[index];
         }
-        Wprime.push_back(existsyn(O));
+        if(!(Wprime[cur].Eval(state2bit(bdd.init))).IsOne()){
+            return false;
+        }
     }
     if((Wprime[cur-1].Eval(state2bit(bdd.init))).IsOne()){
         BDD O = mgr.bddOne();
