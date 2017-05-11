@@ -18,7 +18,8 @@ int main(int argc, char ** argv){
         partfile = argv[2];
         flag = argv[3]; 
     }
-    
+    clock_t t1,t2;
+    t1=clock();
     syn test(filename, partfile);
     bool res = 0;
     if(flag == "1")
@@ -30,6 +31,10 @@ int main(int argc, char ** argv){
         cout<<"realizable"<<endl;
     else
         cout<<"unrealizable"<<endl;
+    t2=clock();
+    float diff ((float)t2-(float)t1);
+    float seconds = diff / CLOCKS_PER_SEC;
+    cout<<"Syn time: "<<seconds<<endl;
     return 0;
 
 }

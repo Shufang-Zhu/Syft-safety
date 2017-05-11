@@ -175,6 +175,9 @@ bool syn::realizablity_variant(){
             I *= bdd.bddvars[index];
         }
         Wprime.push_back(univsyn_invariant(I));
+        if(!(Wprime[cur].Eval(state2bit(bdd.init))).IsOne()){
+            return false;
+        }
         
     }
     if((Wprime[cur-1].Eval(state2bit(bdd.init))).IsOne()){
