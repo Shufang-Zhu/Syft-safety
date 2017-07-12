@@ -126,8 +126,9 @@ bool syn::realizablity(){
         BDD O = mgr.bddOne();
         for(int i = 0; i < bdd.output.size(); i++){
             index = bdd.output[i];
-        O *= bdd.bddvars[index];
+            O *= bdd.bddvars[index];
         }
+        Wprime.push_back(existsyn(O));
         if(!(Wprime[cur].Eval(state2bit(bdd.init))).IsOne()){
             return false;
         }
@@ -165,7 +166,7 @@ bool syn::realizablity_variant(){
             index = bdd.output[i];
             O *= bdd.bddvars[index];
         }
-        
+
         BDD tmp = W[cur] * existsyn_invariant(O, transducer);
         W.push_back(tmp);
         cur++;
@@ -180,7 +181,7 @@ bool syn::realizablity_variant(){
         if(!(Wprime[cur].Eval(state2bit(bdd.init))).IsOne()){
             return false;
         }
-        
+
     }
     if((Wprime[cur-1].Eval(state2bit(bdd.init))).IsOne()){
         BDD O = mgr.bddOne();
@@ -192,7 +193,7 @@ bool syn::realizablity_variant(){
         //naive synthesis
         transducer.SolveEqn(O, S2O, outindex(), bdd.output.size());
         strategy(S2O);
-        
+
         return true;
     }
     return false;
@@ -247,10 +248,10 @@ int* syn::state2bit(int n){
 
 
 BDD syn::univsyn(BDD univ){
-    
+
     BDD tmp = Wprime[cur];
     int offset = bdd.nbits + bdd.nvars;
-    
+
     //dumpdot(I, "W00");
     tmp = prime(tmp);
     for(int i = 0; i < bdd.nbits; i++){
@@ -265,7 +266,7 @@ BDD syn::univsyn(BDD univ){
 }
 
 BDD syn::univsyn_invariant(BDD univ){
-    
+
     BDD tmp = W[cur];
     BDD elimuniv = tmp.UnivAbstract(univ);
     return elimuniv;
@@ -284,20 +285,20 @@ BDD syn::prime(BDD orign){
 BDD syn::existsyn_invariant(BDD exist, BDD& transducer){
     BDD tmp = Wprime[cur];
     int offset = bdd.nbits + bdd.nvars;
-    
+
     //dumpdot(I, "W00");
     tmp = prime(tmp);
     for(int i = 0; i < bdd.nbits; i++){
         tmp = tmp.Compose(bdd.res[i], offset+i);
     }
-    transducer = tmp;    
+    transducer = tmp;
     BDD elimoutput = tmp.ExistAbstract(exist);
     return elimoutput;
 
 }
 
 BDD syn::existsyn(BDD exist){
-    
+
     BDD tmp = W[cur];
     BDD elimoutput = tmp.ExistAbstract(exist);
     return elimoutput;
