@@ -1,2 +1,32 @@
-new bdd construction method
+Compilation Instructions for Syft using CMake
 
+==== Install CUDD ====
+
+0.1 Make sure CUDD is installed. CUDD can be found at:
+    https://github.com/KavrakiLab/cudd.git
+
+0.2 Install CUDD:
+    ./configure --enable-silent-rules --enable-obj --enable-dddmp --prefix=[install location]
+    sudo make install
+
+    If you get an error about aclocal, this might be due to either
+    a. Not having automake:
+       sudo apt-get install automake
+    b. Needing to reconfigure, do this before configuring:
+       autoreconf -i
+
+==== Install FLEX, BISON ====
+
+0.3 Install flex and bison:
+    sudo apt-get install flex bison
+
+==== Install MONA ====
+
+0.4 You probably want MONA if you are using Syft:
+    sudo apt-get install mona
+
+==== Install SSyft ====
+
+1. Compile using the makefile:
+
+   make
