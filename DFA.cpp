@@ -285,6 +285,7 @@ void DFA::construct_bdd(){
         }
     }
 }
+
 void DFA::construct_bdd_new(){
     for(int i = 0; i < nbits+nvars; i++){
         BDD b = mgr->bddVar();
@@ -323,10 +324,15 @@ void DFA::construct_bdd_new(){
             res[i] = res[i] + tmp;
             //dumpdot(res[i], "res "+to_string(i));
         }
-        //dumpdot(res[i], "old_res "+to_string(i));
+        // dumpdot(res[i], "old_res "+to_string(i));
         res[i] = res[i].Compose(mgr->bddOne(), nbits+0);
-        //dumpdot(res[i], "res "+to_string(i));
+        // dumpdot(res[i], "res "+to_string(i));
     }
+	// for(int i = 0; i < tBDD.size(); i++){
+	// 	vbdd v = tBDD[i];
+	// 	for(int j = 0; j < v.size(); j++)
+	// 		dumpdot(v[j],to_string(i)+to_string(j));
+	// }
 
 
 }

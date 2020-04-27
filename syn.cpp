@@ -31,8 +31,8 @@ void syn::initializer(){
     //dumpdot(W[0], "w0");
     Wprime.push_back(!tmp);//modify negation
     cur = 0;
-    //dumpdot(bdd.res[0], "s0");
-    //dumpdot(bdd.res[1], "s1");
+    // dumpdot(bdd.res[0], "s0");
+    // dumpdot(bdd.res[1], "s1");
 
 }
 
@@ -120,7 +120,9 @@ bool syn::realizablity(){
         }
         BDD tmp = W[cur] * univsyn(I);//modify
         W.push_back(tmp);
+		
         cur++;
+		
         if(fixpoint())
             break;
         BDD O = mgr.bddOne();
@@ -129,6 +131,7 @@ bool syn::realizablity(){
             O *= bdd.bddvars[index];
         }
         Wprime.push_back(existsyn(O));
+		// dumpdot(Wprime[cur], "w"+to_string(cur));
         if(!(Wprime[cur].Eval(state2bit(bdd.init))).IsOne()){
             return false;
         }
@@ -224,26 +227,34 @@ int** syn::outindex(){
 }
 
 int* syn::state2bit(int n){
-    string res;
-    int s[bdd.nbits+1];
-    while (n)
-    {
-        res.push_back((n & 1) + '0');
-        n >>= 1;
+    // string res;
+    // int s[bdd.nbits+1];
+    // while (n)
+    // {
+    //     res.push_back((n & 1) + '0');
+    //     n >>= 1;
+    // }
+
+    // if (res.empty())
+    //     res = "0";
+    // else
+    //     reverse(res.begin(), res.end());
+
+    // int offset = bdd.nbits - res.length();
+    // for(int i = 0; i < offset; i++)
+    //     s[i] = 0;
+    // for(int i = offset; i < res.length(); i++)
+    //     s[i] = (int(res[i]) - 48);
+    // s[bdd.nbits] = 1;
+    // return s;
+
+    int* initbv = new int[bdd.nbits];
+    int temp = n;
+    for (int i = bdd.nbits - 1; i >= 0; i--) {
+        initbv[i] = temp % 2;
+        temp = temp / 2;
     }
-
-    if (res.empty())
-        res = "0";
-    else
-        reverse(res.begin(), res.end());
-
-    int offset = bdd.nbits - res.length();
-    for(int i = 0; i < offset; i++)
-        s[i] = 0;
-    for(int i = offset; i < res.length(); i++)
-        s[i] = (int(res[i]) - 48);
-    s[bdd.nbits] = 1;
-    return s;
+    return initbv;
 }
 
 
