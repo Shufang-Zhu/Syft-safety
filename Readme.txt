@@ -25,8 +25,23 @@ Compilation Instructions for Syft using CMake
 0.4 You probably want MONA if you are using Syft:
     sudo apt-get install mona
 
-==== Install SSyft ====
+==== Install& Run SSyft ====
 
-1. Compile using the makefile:
+1. Install the parser:
+
+	cd parser/safe2fol
+	make run
+
+1. Compile SSyft using the makefile:
 
    make
+
+2. Run SSyft:
+
+	./safe2fol NNF LTLfile > MONAfile
+	./mona -xw -u MONAfile > DFAfile
+	./SSyft DFAfile Partfile Starting_player(0: system, 1: environment)
+	
+
+
+
