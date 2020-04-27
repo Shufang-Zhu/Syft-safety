@@ -29,6 +29,7 @@ extern "C"
     eGLOBALLY,
     eFUTURE,
     eUNTIL,
+    eWUNTIL,
     eRELEASE,
     eAND,
     eOR,

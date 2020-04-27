@@ -77,7 +77,7 @@ std::string to_string (ltl_formula *root)
           res += " <-> ";
           break;
         default:
-          fprintf (stderr, "Error formula!");
+          fprintf (stderr, "Error formula_utility!");
           exit (0);
         }
       res += to_string (root->_right);
@@ -264,6 +264,19 @@ ltl_formula* bnf (ltl_formula *root)
           l = bnf (root->_left);
           r = bnf (root->_right);
           res = create_operation (eUNTIL, l, r);
+          break;
+        case eWUNTIL:
+          l = bnf (root->_left);
+          r = bnf (root->_right);
+          // res2 = l;
+          if (l->_type == eNOT)
+            l = l->_right;
+          else
+            l = create_operation (eNOT, NULL, l);
+          res = create_operation (eFUTURE, NULL, l);
+          res = create_operation (eNOT, NULL, res);
+          r = create_operation(eUNTIL, bnf (root->_left), r);
+          res = create_operation (eOR, res, r);
           break;
         case eRELEASE:
           l = bnf (root->_left);

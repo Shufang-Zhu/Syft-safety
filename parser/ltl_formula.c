@@ -118,6 +118,9 @@ print_formula (ltl_formula *root)
         case eWNEXT:
           printf ("W ");
           break;
+        case eWUNTIL:
+          printf (" W ");
+          break;
         case eGLOBALLY:
           printf ("[] ");
           break;

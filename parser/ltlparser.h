@@ -1,19 +1,19 @@
-/* A Bison parser, made by GNU Bison 2.7.  */
+/* A Bison parser, made by GNU Bison 3.0.2.  */
 
 /* Bison interface for Yacc-like parsers in C
-   
-      Copyright (C) 1984, 1989-1990, 2000-2012 Free Software Foundation, Inc.
-   
+
+   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
+
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
-   
+
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
-   
+
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
@@ -26,13 +26,13 @@
    special exception, which will cause the skeleton and the resulting
    Bison output files to be licensed under the GNU General Public
    License without this special exception.
-   
+
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
 #ifndef YY_YY_LTLPARSER_H_INCLUDED
 # define YY_YY_LTLPARSER_H_INCLUDED
-/* Enabling traces.  */
+/* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
 #endif
@@ -40,75 +40,76 @@
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-/* Line 2058 of yacc.c  */
-#line 19 "ltlparser.y"
+#line 19 "../ltlparser.y" /* yacc.c:1909  */
 
 #ifndef YY_TYPEDEF_YY_SCANNER_T
 #define YY_TYPEDEF_YY_SCANNER_T
 typedef void* yyscan_t;
 #endif
 
+#line 51 "../ltlparser.h" /* yacc.c:1909  */
 
-/* Line 2058 of yacc.c  */
-#line 54 "../ltlparser.h"
-
-/* Tokens.  */
+/* Token type.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
-   /* Put the tokens into the symbol table, so that GDB and other debuggers
-      know about them.  */
-   enum yytokentype {
-     TOKEN_EQUIV = 258,
-     TOKEN_IMPLIES = 259,
-     TOKEN_OR = 260,
-     TOKEN_AND = 261,
-     TOKEN_RELEASE = 262,
-     TOKEN_UNTIL = 263,
-     TOKEN_FUTURE = 264,
-     TOKEN_GLOBALLY = 265,
-     TOKEN_NEXT = 266,
-     TOKEN_WEAK_NEXT = 267,
-     TOKEN_NOT = 268,
-     TOKEN_TRUE = 269,
-     TOKEN_FALSE = 270,
-     TOKEN_LPAREN = 271,
-     TOKEN_RPAREN = 272,
-     TOKEN_VARIABLE = 273
-   };
+  enum yytokentype
+  {
+    TOKEN_EQUIV = 258,
+    TOKEN_IMPLIES = 259,
+    TOKEN_OR = 260,
+    TOKEN_AND = 261,
+    TOKEN_RELEASE = 262,
+    TOKEN_UNTIL = 263,
+    TOKEN_WEAK_UNTIL = 264,
+    TOKEN_FUTURE = 265,
+    TOKEN_GLOBALLY = 266,
+    TOKEN_NEXT = 267,
+    TOKEN_WEAK_NEXT = 268,
+    TOKEN_NOT = 269,
+    TOKEN_TRUE = 270,
+    TOKEN_FALSE = 271,
+    TOKEN_LPAREN = 272,
+    TOKEN_RPAREN = 273,
+    TOKEN_VARIABLE = 274
+  };
 #endif
+/* Tokens.  */
+#define TOKEN_EQUIV 258
+#define TOKEN_IMPLIES 259
+#define TOKEN_OR 260
+#define TOKEN_AND 261
+#define TOKEN_RELEASE 262
+#define TOKEN_UNTIL 263
+#define TOKEN_WEAK_UNTIL 264
+#define TOKEN_FUTURE 265
+#define TOKEN_GLOBALLY 266
+#define TOKEN_NEXT 267
+#define TOKEN_WEAK_NEXT 268
+#define TOKEN_NOT 269
+#define TOKEN_TRUE 270
+#define TOKEN_FALSE 271
+#define TOKEN_LPAREN 272
+#define TOKEN_RPAREN 273
+#define TOKEN_VARIABLE 274
 
-
+/* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE
+typedef union YYSTYPE YYSTYPE;
+union YYSTYPE
 {
-/* Line 2058 of yacc.c  */
-#line 34 "ltlparser.y"
+#line 34 "../ltlparser.y" /* yacc.c:1909  */
 
 	char* var_name;
 	ltl_formula *formula;
 
-
-/* Line 2058 of yacc.c  */
-#line 93 "../ltlparser.h"
-} YYSTYPE;
+#line 106 "../ltlparser.h" /* yacc.c:1909  */
+};
 # define YYSTYPE_IS_TRIVIAL 1
-# define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
 #endif
 
 
-#ifdef YYPARSE_PARAM
-#if defined __STDC__ || defined __cplusplus
-int yyparse (void *YYPARSE_PARAM);
-#else
-int yyparse ();
-#endif
-#else /* ! YYPARSE_PARAM */
-#if defined __STDC__ || defined __cplusplus
+
 int yyparse (ltl_formula **formula, yyscan_t scanner);
-#else
-int yyparse ();
-#endif
-#endif /* ! YYPARSE_PARAM */
 
 #endif /* !YY_YY_LTLPARSER_H_INCLUDED  */
