@@ -27,18 +27,9 @@
 *.exe
 *.out
 *.app
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 384ce1c039ef3cc4586804ee067598c3fb138c47
 bdd
 ltlf2ws1s
 mona
-<<<<<<< HEAD
-safe2fol
-=======
->>>>>>> a8ba6083990210392a4f64304498d5ef4dc38ac8
 SSyft
 
 #temporary files
@@ -50,7 +41,3 @@ SSyft
 *.ltlf
 *.part
 *.ltl
-<<<<<<< HEAD
->>>>>>> first commit
-=======
->>>>>>> 384ce1c039ef3cc4586804ee067598c3fb138c47
