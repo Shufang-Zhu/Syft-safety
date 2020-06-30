@@ -36,11 +36,11 @@ void DFA::read_partfile(string partfile){
         if(f.is_open()){
             if(strfind(line, "inputs")){
                 split(inputs, line, is_any_of(" "));
-                //print(inputs);
+                // print(inputs);
             }
             else if(strfind(line, "outputs")){
                 split(outputs, line, is_any_of(" "));
-                //print(outputs);
+                // print(outputs);
             }
             else
                 cout<<"read partfile error!"<<endl;
@@ -64,8 +64,8 @@ void DFA::read_partfile(string partfile){
         else
             cout<<"error: "<<variables[i]<<endl;
     }
-    //print_int(input);
-    //print_int(output);
+    // print_int(input);
+    // print_int(output);
 
 }
 
@@ -84,7 +84,7 @@ ifstream f(filename);
                     nvars = stoi(fields[3]);
                     //cout<<nvars<<endl;
                 }
-                if(strfind(line, "ALIVE")){
+                if(strfind(line, "variables") && !strfind(line, "number")){
                     split(variables, line, is_any_of(" "));
 
                 }
