@@ -28,7 +28,7 @@ void syn::initializer(){
     }
     tmp = greatest_acc(tmp);
     W.push_back(!tmp);//modifty negation
-    //dumpdot(W[0], "w0");
+    // dumpdot(W[0], "w0");
     Wprime.push_back(!tmp);//modify negation
     cur = 0;
     // dumpdot(bdd.res[0], "s0");
@@ -181,6 +181,7 @@ bool syn::realizablity_variant(){
             I *= bdd.bddvars[index];
         }
         Wprime.push_back(univsyn_invariant(I));
+        // dumpdot(Wprime[cur], "w"+to_string(cur));
         if(!(Wprime[cur].Eval(state2bit(bdd.init))).IsOne()){
             return false;
         }
@@ -194,7 +195,9 @@ bool syn::realizablity_variant(){
         }
         O *= bdd.bddvars[bdd.nbits];
         //naive synthesis
-        transducer.SolveEqn(O, S2O, outindex(), bdd.output.size());
+        // transducer.SolveEqn(O, S2O, outindex(), bdd.output.size());
+        InputFirstSynthesis IFsyn(mgr);
+        unordered_map<unsigned int, BDD> IFstrategy = IFsyn.synthesize(transducer, O);
         strategy(S2O);
 
         return true;
@@ -317,11 +320,19 @@ BDD syn::existsyn(BDD exist){
 }
 
 void syn::dumpdot(BDD &b, string filename){
-    FILE *fp = fopen(filename.c_str(), "w");
+    /*FILE *fp = fopen(filename.c_str(), "w");
     vector<BDD> single(1);
     single[0] = b;
 	this->mgr.DumpDot(single, NULL, NULL, fp);
 	fclose(fp);
+    */
+    FILE *fp = fopen(filename.c_str(), "w");
+    ADD a=b.Add();
+
+    vector<ADD> single(1);
+    single[0] = a;
+    this->mgr.DumpDot(single, NULL, NULL, fp);
+    fclose(fp);
 }
 
 

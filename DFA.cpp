@@ -325,7 +325,7 @@ void DFA::construct_bdd_new(){
             //dumpdot(res[i], "res "+to_string(i));
         }
         // dumpdot(res[i], "old_res "+to_string(i));
-        res[i] = res[i].Compose(mgr->bddOne(), nbits+0);
+        // res[i] = res[i].Compose(mgr->bddOne(), nbits+0);
         // dumpdot(res[i], "res "+to_string(i));
     }
 	// for(int i = 0; i < tBDD.size(); i++){
