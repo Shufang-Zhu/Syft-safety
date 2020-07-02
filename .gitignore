@@ -31,7 +31,7 @@ bdd
 ltlf2ws1s
 mona
 SSyft
-safe2fol
+parser/safe2fol/safe2fol
 
 #temporary files
 *~
