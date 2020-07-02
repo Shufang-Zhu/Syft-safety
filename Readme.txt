@@ -32,7 +32,7 @@ stack install
 
 ==== Install& Run SSyft ====
 
-1. Install the parser:
+1. Compile the parser:
 
 	cd parser/safe2fol
 	make run
