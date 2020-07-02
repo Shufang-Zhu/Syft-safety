@@ -43,10 +43,13 @@ stack install
 
 2. Run SSyft:
 
-	./safe2fol NNF LTLfile > MONAfile
-	./mona -xw -u MONAfile > DFAfile
-	./SSyft DFAfile Partfile Starting_player(0: system, 1: environment)
-	
+  $ ./ssyft-run.sh [-smv | -tlsf] <filename> <workdir>	
 
+3. Run tests:
+
+  $ cd test/smv
+  $ ./run-tests
+  $ cd ../test/tlsf
+  $ ./run-tests
 
 
