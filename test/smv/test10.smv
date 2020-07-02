@@ -1,0 +1,5 @@
+X(!u | !c) & X(!u | c)
+
+INPUT : u
+OUTPUT : c
+-- UNREALIZABLE

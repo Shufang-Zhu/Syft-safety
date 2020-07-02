@@ -1,0 +1,5 @@
+G(u1 -> (c1 | X c1 | X X c1)) | G(u2 -> (c2 | X c2))
+
+INPUT : u1, u2
+OUTPUT : c1, c2
+-- REALIZABLE

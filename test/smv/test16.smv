@@ -1,0 +1,5 @@
+X X X(u2 | u1) & X(c)
+
+INPUT   : u1,u2
+OUTPUT  : c
+-- UNREALIZABLE

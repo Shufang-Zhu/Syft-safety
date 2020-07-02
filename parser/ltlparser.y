@@ -36,7 +36,6 @@ typedef void* yyscan_t;
 	ltl_formula *formula;
 }
 
-
 %right TOKEN_IMPLIES TOKEN_EQUIV
 %left TOKEN_OR
 %left TOKEN_AND

@@ -1,0 +1,5 @@
+(c | u) | (c & X(c | u))
+
+INPUT   : u
+OUTPUT  : c
+-- REALIZABLE

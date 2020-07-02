@@ -1,0 +1,5 @@
+(X(u) | X(c)) & (X(u) <-> X(c))
+
+INPUT : u
+OUTPUT : c
+-- UNREALIZABLE

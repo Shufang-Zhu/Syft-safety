@@ -8,7 +8,6 @@ CC	    =   g++ -std=c++11
 CDEBUG	    =	-g
 INCLUDE	    =   -I../
 
-ltl2smv:	$(PARSERCFILES)
 
 ltllexer.c:	../grammar/ltllexer.l
 		flex ../grammar/ltllexer.l

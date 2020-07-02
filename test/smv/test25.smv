@@ -1,0 +1,5 @@
+G( c & X(u1 -> (u2 | X u2)) )
+
+INPUT : u1, u2
+OUTPUT : c
+-- UNREALIZABLE

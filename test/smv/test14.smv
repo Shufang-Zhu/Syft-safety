@@ -1,0 +1,5 @@
+c | (u & X c) | (u & X u & X X c)
+
+INPUT   : u
+OUTPUT  : c
+-- REALIZABLE

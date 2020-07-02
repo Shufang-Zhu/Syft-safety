@@ -1,0 +1,5 @@
+(G(c1) & G(c2)) | (G(u1) & G(u2))
+
+INPUT : u1, u2
+OUTPUT : c1, c2
+-- REALIZABLE
