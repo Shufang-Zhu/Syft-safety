@@ -19,8 +19,8 @@
 LPAREN		"("
 RPAREN		")"
 
-EQUIV		"<->"|"<=>"
-IMPLIES		"->"|"=>"
+EQUIV		"<->"
+IMPLIES		"->"
 OR			\|\|?
 AND			&&?
 RELEASE		R|V
@@ -47,11 +47,10 @@ WS			[ \r\n\t]*
 {AND}			{ return TOKEN_AND;			}
 {RELEASE}		{ return TOKEN_RELEASE;		}
 {UNTIL}			{ return TOKEN_UNTIL;		}
-{WEAK_UNTIL}	{ return TOKEN_WEAK_UNTIL;	}
 {FUTURE}		{ return TOKEN_FUTURE;		}
 {GLOBALLY}		{ return TOKEN_GLOBALLY;	}
 {NEXT}			{ return TOKEN_NEXT;		}
-{WEAK_NEXT}		{ return TOKEN_WEAK_NEXT;	}
+{WEAK_NEXT}		{ return TOKEN_WEAK_NEXT;		}
 {NOT}			{ return TOKEN_NOT;			}
 
 {WS}            { /* Skip blanks. */		}

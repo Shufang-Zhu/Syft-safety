@@ -36,18 +36,14 @@ typedef void* yyscan_t;
 	ltl_formula *formula;
 }
 
-%left TOKEN_EQUIV
-%left TOKEN_IMPLIES
+
+%right TOKEN_IMPLIES TOKEN_EQUIV
 %left TOKEN_OR
 %left TOKEN_AND
-%left TOKEN_RELEASE
-%left TOKEN_UNTIL
-%left TOKEN_WEAK_UNTIL
-%right TOKEN_FUTURE
-%right TOKEN_GLOBALLY
-%right TOKEN_NEXT
-%right TOKEN_WEAK_NEXT
-%right TOKEN_NOT
+%right TOKEN_UNTIL
+%right TOKEN_WEAK_UNTIL
+%right TOKEN_RELEASE
+%right TOKEN_FUTURE TOKEN_GLOBALLY TOKEN_NEXT TOKEN_WEAK_NEXT TOKEN_NOT
 
 %token TOKEN_TRUE
 %token TOKEN_FALSE
@@ -74,7 +70,6 @@ expr
 	| expr TOKEN_AND expr		{ $$ = create_operation( eAND, $1, $3 );		}
 	| expr TOKEN_RELEASE expr	{ $$ = create_operation( eRELEASE, $1, $3 );	}
 	| expr TOKEN_UNTIL expr		{ $$ = create_operation( eUNTIL, $1, $3 );		}
-	| expr TOKEN_WEAK_UNTIL expr		{ $$ = create_operation( eWUNTIL, $1, $3 );		}
 	| TOKEN_FUTURE expr			{ $$ = create_operation( eFUTURE, NULL, $2 );	}
 	| TOKEN_GLOBALLY expr		{ $$ = create_operation( eGLOBALLY, NULL, $2 );	}
 	| TOKEN_NEXT expr			{ $$ = create_operation( eNEXT, NULL, $2 );		}

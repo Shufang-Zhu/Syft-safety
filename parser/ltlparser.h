@@ -54,13 +54,13 @@ typedef void* yyscan_t;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    TOKEN_EQUIV = 258,
-    TOKEN_IMPLIES = 259,
+    TOKEN_IMPLIES = 258,
+    TOKEN_EQUIV = 259,
     TOKEN_OR = 260,
     TOKEN_AND = 261,
-    TOKEN_RELEASE = 262,
-    TOKEN_UNTIL = 263,
-    TOKEN_WEAK_UNTIL = 264,
+    TOKEN_UNTIL = 262,
+    TOKEN_WEAK_UNTIL = 263,
+    TOKEN_RELEASE = 264,
     TOKEN_FUTURE = 265,
     TOKEN_GLOBALLY = 266,
     TOKEN_NEXT = 267,
@@ -74,13 +74,13 @@ typedef void* yyscan_t;
   };
 #endif
 /* Tokens.  */
-#define TOKEN_EQUIV 258
-#define TOKEN_IMPLIES 259
+#define TOKEN_IMPLIES 258
+#define TOKEN_EQUIV 259
 #define TOKEN_OR 260
 #define TOKEN_AND 261
-#define TOKEN_RELEASE 262
-#define TOKEN_UNTIL 263
-#define TOKEN_WEAK_UNTIL 264
+#define TOKEN_UNTIL 262
+#define TOKEN_WEAK_UNTIL 263
+#define TOKEN_RELEASE 264
 #define TOKEN_FUTURE 265
 #define TOKEN_GLOBALLY 266
 #define TOKEN_NEXT 267
