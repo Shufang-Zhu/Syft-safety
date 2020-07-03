@@ -20,6 +20,9 @@ Compilation Instructions for Syft using CMake
 0.3 Install flex and bison:
     sudo apt-get install flex bison
 
+=== Install Boost ===
+$ sudo apt-get intall libboost-all-dev
+
 ==== Install MONA ====
 
 0.4 You probably want MONA if you are using Syft:
