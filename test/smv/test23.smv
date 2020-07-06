@@ -1,0 +1,5 @@
+G( (X c) & ((X u) | (c | X c)) )
+
+INPUT : u
+OUTPUT : c
+-- REALIZABLE

@@ -4,6 +4,7 @@
 #define DFA_H
 
 using namespace std;
+using namespace CUDD;
 
 typedef vector<int> item;
 typedef vector<BDD> vbdd;

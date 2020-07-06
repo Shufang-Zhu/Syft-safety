@@ -3,6 +3,9 @@
 #include <vector>
 #include <unordered_map>
 
+using namespace std;
+using namespace CUDD;
+
 class InputFirstSynthesis
 {
 	Cudd m;

@@ -31,6 +31,7 @@ bdd
 ltlf2ws1s
 mona
 SSyft
+parser/safe2fol/safe2fol
 
 #temporary files
 *~
@@ -41,3 +42,9 @@ SSyft
 *.ltlf
 *.part
 *.ltl
+
+#lexer and parser files
+parser/ltllexer.h
+parser/ltllexer.c
+parser/ltlparser.h
+parser/ltlparser.c

@@ -8,13 +8,12 @@ CC	    =   g++ -std=c++11
 CDEBUG	    =	-g
 INCLUDE	    =   -I../
 
-ltl2smv:	$(PARSERCFILES)
 
-ltllexer.c:	../grammar/ltllexer.l
-		flex ../grammar/ltllexer.l
+ltllexer.c:	../ltllexer.l
+		flex ../ltllexer.l
 
-ltlparser.c:	../grammar/ltlparser.y
-		bison ../grammar/ltlparser.y
+ltlparser.c:	../ltlparser.y
+		bison ../ltlparser.y
 
 run:	$(ALLCFILES)
 	$(CC) $(INCLUDE) $(CDEBUG) $(ALLCFILES) -o safe2fol

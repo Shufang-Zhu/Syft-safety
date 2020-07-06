@@ -20,14 +20,22 @@ Compilation Instructions for Syft using CMake
 0.3 Install flex and bison:
     sudo apt-get install flex bison
 
+=== Install Boost ===
+$ sudo apt-get intall libboost-all-dev
+
 ==== Install MONA ====
 
 0.4 You probably want MONA if you are using Syft:
     sudo apt-get install mona
 
+=== Install Syfco ===
+curl -sSL https://get.haskellstack.org/ | sh
+git clone https://github.com/reactive-systems/syfco.git
+stack install
+
 ==== Install& Run SSyft ====
 
-1. Install the parser:
+1. Compile the parser:
 
 	cd parser/safe2fol
 	make run
@@ -38,11 +46,14 @@ Compilation Instructions for Syft using CMake
 
 2. Run SSyft:
 
-	./safe2fol NNF LTLfile > MONAfile
-	./mona -xw -u MONAfile > DFAfile
-	./SSyft DFAfile Partfile Starting_player(0: system, 1: environment)
-	
+  $ ./ssyft-run.sh [-smv | -tlsf] <filename> <workdir>	
 
+3. Run tests:
+
+  $ cd test/smv
+  $ ./run-tests
+  $ cd ../test/tlsf
+  $ ./run-tests
 
 
 

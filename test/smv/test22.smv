@@ -1,0 +1,5 @@
+X (u V (c1 & c2))
+
+INPUT   : u
+OUTPUT  : c1, c2
+-- REALIZABLE

@@ -1,0 +1,10 @@
+G((c1 | u1) & 
+X G((c2 | u2) & 
+X X G((c3 | u3) & 
+X X X G((c4 | u4) & 
+X X X X G((c5 | u5) & 
+X X X X X G((c6 | u6)))))))
+
+INPUT : u1, u2, u3, u4, u5, u6
+OUTPUT : c1, c2, c3, c4, c5, c6
+-- REALIZABLE

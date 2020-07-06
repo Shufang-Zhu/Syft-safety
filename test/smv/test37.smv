@@ -1,0 +1,5 @@
+(u1 -> (c1 | X c1)) & (u2 -> (c2 | X c2 | X X c2 | X X X c2))
+
+INPUT : u1, u2
+OUTPUT : c1, c2
+-- REALIZABLE

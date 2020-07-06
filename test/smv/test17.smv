@@ -1,0 +1,5 @@
+X(c1 & X(c2 | (u & X c2)))
+
+INPUT   : u
+OUTPUT  : c1, c2
+-- REALIZABLE

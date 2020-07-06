@@ -1,0 +1,20 @@
+G(c1 & 
+X G(c2 & 
+X X G(c3 & 
+X X X G(c4 & 
+X X X X G(c5 & 
+X X X X X G(c6 &
+X X X X X X G(c7 & 
+X X X X X X X G(c8 & 
+X X X X X X X X G(c9 & 
+X X X X X X X X X G(c10 & 
+X X X X X X X X X X G(c11 & 
+X X X X X X X X X X X G(c12 & 
+X X X X X X X X X X X X G(c13 & 
+X X X X X X X X X X X X X G(c14 & 
+X X X X X X X X X X X X X X G(c15
+| u)))))))))))))))
+
+INPUT : u
+OUTPUT : c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15
+-- REALIZABLE

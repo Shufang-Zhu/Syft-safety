@@ -1,0 +1,5 @@
+G( c1 & X G(c2 & X X G(c3 | u)))
+
+INPUT : u
+OUTPUT : c1, c2, c3
+-- REALIZABLE
