@@ -72,6 +72,7 @@ mv $name.aux $ltlfile
 
 
 # solving
+set -e
 $script_path/parser/safe2fol/safe2fol NNF $ltlfile > $monafile
 mona -xwu $monafile > $dfafile
 if cat $dfafile | grep -q 'out of memory';then
