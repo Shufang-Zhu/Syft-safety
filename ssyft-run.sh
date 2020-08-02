@@ -74,7 +74,6 @@ mv $name.aux $ltlfile
 # solving
 $script_path/parser/safe2fol/safe2fol NNF $ltlfile > $monafile
 if mona -xwu $monafile > $dfafile ; then
-#if cat $dfafile | grep -q 'out of memory\|token too large';then
   $script_path/SSyft $dfafile $partfile 1 2>&1
 else
   echo "memout"
