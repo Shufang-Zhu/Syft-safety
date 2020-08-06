@@ -72,6 +72,7 @@ container (see below).
 
 
 ## Docker container
-It is possible to run Ssyft inside a Docker container.
+It is possible to run Ssyft inside a Docker container. Note: the first time you
+run the script it may take some time to download to container from DockerHub.
 
       $ ssyft.sh [-smv | -tlsf] <filename>
