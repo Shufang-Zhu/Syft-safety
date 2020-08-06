@@ -1,0 +1,6 @@
+The following researchers have made additional excellent contributions to the development of SSyft! Thanks!
+
+Luca Geatti 
+- Added local tests.
+- Added scripts to ease the execution of Ssyft: ssyft_run.sh. Since the SYNTCOMP benchmarks are written in TLSF format, Luca added the support to TLSF for Ssyft. 
+- Added a test folder (with around 70 test cases) along with scripts for running the tests.
