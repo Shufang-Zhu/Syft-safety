@@ -56,7 +56,7 @@ You can either install Ssyft from scratch or use a Docker container (see below).
 
 1. Compile SSyft using the makefile:
 
-   	$ make
+   		$ make
 
 2. Run SSyft:
 
