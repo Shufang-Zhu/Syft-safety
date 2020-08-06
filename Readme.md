@@ -1,6 +1,7 @@
 # Ssyft
 Ssyft is a tool for the realizability of Safety LTL specifications.
-You can either install Ssyft from scratch or use a Docker container (see below).
+You can either install Ssyft from scratch or use the platform-independent Docker
+container (see below).
 
 
 ## Compilation Instructions for Syft using CMake
