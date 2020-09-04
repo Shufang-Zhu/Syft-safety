@@ -8,11 +8,12 @@ die() {
 usage() {
   cat <<END >&2
 USAGE
- ssyft.sh [-smv | -tlsf] <filename>
+ ssyft.sh [-smv | -tlsf] [--only-parse] <filename>
 
 OPTIONS
-  -smv   SMV file format
-  -tlsf  TLSF file format 
+  -smv          SMV file format
+  -tlsf         TLSF file format 
+  --only-parse  Invocation of parser only
 END
 }
 
@@ -26,11 +27,14 @@ else
   die "Wrong format."
 fi
 
-
-[ -z "$2" ] && usage && die
+only_parse=""
+if [ "$2" == "--only-parse" ];then 
+  only_parse="true"
+  shift
+fi
 [ -f "$2" ] || die "Unable to open '$1': No such file or directory"
 
 docker --version > /dev/null || die "Unable to find \`docker'"
 
 docker run --rm -it -v $(pwd):$(pwd) -w $(pwd) \
-  lucageatti/ssyft $format $2 /tmp
+  lucageatti/ssyft $format $only_parse $2 /tmp
