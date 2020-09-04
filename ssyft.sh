@@ -29,7 +29,7 @@ fi
 
 only_parse=""
 if [ "$2" == "--only-parse" ];then 
-  only_parse="true"
+  only_parse="--only-parse"
   shift
 fi
 [ -f "$2" ] || die "Unable to open '$1': No such file or directory"
