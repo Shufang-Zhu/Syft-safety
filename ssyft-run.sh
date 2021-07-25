@@ -2,7 +2,7 @@
 
 # help
 if [ "$1" = "-h" ] || [ "$1" = "--help" ];then
-  echo "ssyft-run.sh [-smv | -tlsf] <filename> <workdir>"
+  echo "ssyft-run.sh [-smv | -tlsf] [--only-parse] <filename> <workdir>"
   exit 0
 fi
 
@@ -10,6 +10,11 @@ fi
 if [[ -z "$1" || ("$1" != "-tlsf" && "$1" != "-smv") ]];then
   echo "*** Please specify the input file format with -smv or -tlsf."
   exit 1
+fi
+only_parser=""
+if [ "$2" == "--only-parse" ];then
+  only_parser="true"
+  shift
 fi
 if [ -z "$2" ];then
   echo "*** Please specify the input file."
@@ -73,10 +78,14 @@ mv $name.aux $ltlfile
 
 # solving
 $script_path/parser/safe2fol/safe2fol NNF $ltlfile > $monafile
-mona -xwu $monafile > $dfafile
-$script_path/SSyft $dfafile $partfile 1
-
-
+if [ -z $only_parser ];then
+  if mona -xwu $monafile > $dfafile ; then
+    $script_path/SSyft $dfafile $partfile 1 2>&1
+  else
+    echo "memout"
+    cat $dfafile
+  fi
+fi
 
 # cleaning
 rm -f $ltlfile
